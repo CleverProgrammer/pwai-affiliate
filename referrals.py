@@ -93,6 +93,8 @@ else:
   earnings = calculate_earnings(num_referrals, COMMISSION_RATE, COURSE_PRICE)
   st.markdown(f"# Earnings 👉 ${int(earnings):,}")
   st.markdown(f"### ...on referring {num_referrals} students ❤️")
+  st.markdown('')
+  st.markdown('## Sign up below 👇')
 
   # Form for user details
   with st.form(key='signup_form'):
