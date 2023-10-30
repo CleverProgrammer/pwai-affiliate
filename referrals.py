@@ -1,6 +1,14 @@
 import streamlit as st
 import requests
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # Initialize session state
 if 'form_submitted' not in st.session_state:
   st.session_state.form_submitted = False
