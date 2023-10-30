@@ -96,8 +96,8 @@ else:
   # Form for user details
   with st.form(key='signup_form'):
     name = st.text_input("Name:")
-    phone = st.text_input("Phone:")
     email = st.text_input("Email:")
+    phone = st.text_input("Phone:")
     submit_button = st.form_submit_button(
         label='Yes, I Want to Join this Referral Program!')
 
