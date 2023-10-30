@@ -14,7 +14,7 @@ if 'form_submitted' not in st.session_state:
   st.session_state.form_submitted = False
 
 
-def notify_signup_via_text(name, email, phone):
+def notify_signup_via_text(name, email, phone, num_referrals, earnings):
   api_token = st.secrets["SIMPLE_TEXTING_API"]
   account_phone_number = st.secrets["SIMPLE_TEXTING_PHONE"]
   your_phone_number = st.secrets["QAZI_PHONE"]
@@ -51,15 +51,18 @@ if st.session_state.form_submitted:
   st.markdown(
       "[Sign up here](https://cleverprogrammer.thrivecart.com/profit-with-ai-chatgpt/partner/)"
   )
-  st.subheader(
-      "Thanks so much for signing up... Clever Programmer has your info locked in."
-  )
   st.write(
-      "Someone from the team will text or email you shortly. Be on the lookout."
+      "The form on the previous page was just to get your info so someone from team CP can hit you up in next few days. You still need to sign up for the affiliate program above."
   )
-  st.markdown(
-      "[Go here to fully signup for the affiliate program so you can start selling right away.](https://cleverprogrammer.thrivecart.com/profit-with-ai-chatgpt/partner/)"
+  st.image(
+      'https://senja-io.s3.us-west-1.amazonaws.com/public/media/XwObwY6NDx9Z90Vr.png'
   )
+  # # Senja Embed at the bottom
+  # st.markdown("""
+  #     <div class="senja-embed" data-id="93f6bab8-6901-4d67-bb60-c1d4ea231ee5" data-lazyload="false"></div>
+  #     <script async type="text/javascript" src="https://static.senja.io/dist/platform.js"></script>
+  #     """,
+  #             unsafe_allow_html=True)
 
 else:
   # Initial layout
@@ -90,14 +93,12 @@ else:
   earnings = calculate_earnings(num_referrals, COMMISSION_RATE, COURSE_PRICE)
   st.markdown(f"# Earnings 👉 ${int(earnings):,}")
   st.markdown(f"### ...on referring {num_referrals} students ❤️")
-  st.markdown('')
-  st.markdown('## Sign up below 👇')
 
   # Form for user details
   with st.form(key='signup_form'):
     name = st.text_input("Name:")
-    email = st.text_input("Email:")
     phone = st.text_input("Phone:")
+    email = st.text_input("Email:")
     submit_button = st.form_submit_button(
         label='Yes, I Want to Join this Referral Program!')
 
@@ -105,5 +106,5 @@ else:
   if submit_button:
     if all([name, phone, email]):
       st.session_state.form_submitted = True
-      notify_signup_via_text(name, email, phone)
+      notify_signup_via_text(name, email, phone, num_referrals, earnings)
       st.rerun()  # Force a rerun to update the page
