@@ -82,7 +82,7 @@ else:
     """)
 
   # Slider
-  st.markdown('# Referral Calculator')
+  st.markdown('## Want to see how much money you can make? Try this referral calculator here (just slide)')
   num_referrals = st.slider("How many referrals do you expect?", 0, 100, 7)
 
   # Constants
